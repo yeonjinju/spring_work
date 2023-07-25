@@ -1,46 +1,38 @@
-package com.gura.step01;
+package com.gura.step01.member;
 
 public class MemberDto {
-	// ÇÊµå
+	//í•„ë“œ
 	private int num;
 	private String name;
 	private String addr;
-	
+	//ìƒì„±ì
+	public MemberDto() {}
+
+	public MemberDto(int num, String name, String addr) {
+		super();
+		this.num = num;
+		this.name = name;
+		this.addr = addr;
+	}
+
 	public int getNum() {
 		return num;
 	}
-
 	public void setNum(int num) {
 		this.num = num;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getAddr() {
 		return addr;
 	}
-
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
 
-	// »ı¼ºÀÚ
-	public MemberDto() {
-		
-	}
-
-	public MemberDto(int num, String name, String addr) {
-		this.num=num;
-		this.name=name;
-		this.addr=addr;
-		
-	}
-	
 
 }

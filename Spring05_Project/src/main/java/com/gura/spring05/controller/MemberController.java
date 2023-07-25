@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gura.spring05.service.MemberService;
 
+import static com.gura.spring05.controller.AdminController.logger;
+
 
 @Controller
 @RequestMapping("/member/*")

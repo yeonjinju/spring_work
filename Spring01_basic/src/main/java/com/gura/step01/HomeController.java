@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-	
-	 
-		// ÀÌ ÇÁ·ÎÁ§Æ®ÀÇ ÃÖ»óÀ§ °æ·Î ¿äÃ»ÀÌ ¿À¸é
-	   @RequestMapping("/")
-	   public String home(HttpServletRequest request) {
-		   // ÀÀ´ä¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍ(Model) ÀÌ¶ó°í °¡Á¤ÇÏÀÚ
-		   List<String> noticeList=new ArrayList<String>();
-		   noticeList.add("³¯¾¾°¡ ¸¹ÀÌ ´õ¿öÁö°í ÀÖ¾î¿ä");
-		   noticeList.add("¾îÂ¼±¸...");
-		   noticeList.add("ÀúÂ¼±¸...");
-		   
-		   // home.jsp ÆäÀÌÁö¿¡¼­ ÇÊ¿äÇÑ ¸ğµ¨(data) ¸¦ HttpServletRequest °´Ã¼¿¡ ´ã¾ÆµÎ±â
-		   request.setAttribute("noticeList", noticeList);
-		   
-		   // /WEB-INF/views/home.jsp ÆäÀÌÁö·Î forward ÀÌµ¿ÇØ¼­ ÀÀ´äÇÏ°Ú´Ù´Â ÀÇ¹Ì
-		   // "home" ÀÌ¶ó´Â ¹®ÀÚ¿­À» ¸®ÅÏÇÏ¸é ¾Õ¿¡ "/WEB-INF/views/" µÚ¿¡ ".jsp" °¡ ÀÚµ¿À¸·Î ºÙ´Â´Ù.
-	      return "home";
-	   }
+
+	//ì´ í”„ë¡œì íŠ¸ì˜ ìµœìƒìœ„ ê²½ë¡œ ìš”ì²­ì´ ì˜¤ë©´
+	@RequestMapping("/")
+	public String home(HttpServletRequest request) {
+		//ì‘ë‹µì— í•„ìš”í•œ ë°ì´í„°(Model) ì´ë¼ê³  ê°€ì •í•˜ì
+		List<String> noticeList=new ArrayList<String>();
+		noticeList.add("ë‚ ì”¨ê°€ ë§ì´ ë”ì›Œ ì§€ê³  ìˆì–´ìš”");
+		noticeList.add("ì–´ì©Œêµ¬...");
+		noticeList.add("ì €ì©Œêµ¬...");
+
+		//home.jsp í˜ì´ì§€ì—ì„œ í•„ìš”í•œ ëª¨ë¸(data) ë¥¼ HttpServletRequest ê°ì²´ì— ë‹´ì•„ë‘ê¸°
+		request.setAttribute("noticeList", noticeList);
+
+		// /WEB-INF/views/home.jsp í˜ì´ì§€ë¡œ forward ì´ë™í•´ì„œ ì‘ë‹µí•˜ê² ë‹¤ëŠ” ì˜ë¯¸
+		//  "home" ì´ë¼ëŠ” ë¬¸ìì—´ì„ ë¦¬í„´í•˜ë©´  ì•ì— "/WEB-INF/views/" ë’¤ì— ".jsp" ê°€ ìë™ìœ¼ë¡œ ë¶™ëŠ”ë‹¤.
+		return "home";
+	}
+
 }

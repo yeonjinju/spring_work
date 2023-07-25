@@ -7,80 +7,72 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gura.step01.MemberDto;
-
 @Controller
 public class MemberController {
+
 	@RequestMapping("/member/delete")
 	public String delete(int num) {
-		System.out.println(num+"¹ø È¸¿øÀ» »èÁ¦ÇÕ´Ï´Ù.");
+		System.out.println(num+" ë²ˆ íšŒì›ì„ ì‚­ì œ í•©ë‹ˆë‹¤.");
 		/*
-		 * ¸®´ÙÀÏ·ºÆ® ÀÀ´äÀ» ÇÒ¶§´Â "redirect: »õ·Î ¿äÃ» ÇÒ °æ·Î " Çü½ÄÀ¸·Î view page Á¤º¸¸¦ ÀÛ¼ºÇÏ¸é µÈ´Ù. 
-		 *  redirect:/ == home
+		 * ë¦¬ë‹¤ì¼ë ‰íŠ¸ ì‘ë‹µì„ í• ë•ŒëŠ”  "redirect: ìƒˆë¡œ ìš”ì²­í•  ê²½ë¡œ" í˜•ì‹ìœ¼ë¡œ view page ì •ë³´ë¥¼ ì‘ì„±í•˜ë©´ ëœë‹¤.
 		 */
 		return "redirect:/";
 	}
-	
-	// "/member/insertform" ¿äÃ»À» Ã³¸®ÇÒ ¸Ş¼Òµå ¸¸µé±â
-	/*
-	 *  [¿äÃ» ÆÄ¶ó¹ÌÅÍ ÃßÃâÇÏ´Â ¹æ¹ı 1]
-	 *  HttpServletRequest °´Ã¼¸¦ Controller ¸Ş¼Òµå·Î Àü´Ş¹Ş¾Æ¼­ Á÷Á¢ ÃßÃâÇÑ´Ù.
-	 */
-	
-	
-	// ¸®Äù½ºÆ® ¸ÊÇÎÀ» ½ÃÀÛÇÒ¶§ ½½·¡½Ã ÇÊ¼ö"/" ¸®ÅÏÀº "/" ºÒÇÊ¿ä 
+	// "/member/insertform" ìš”ì²­ì„ ì²˜ë¦¬í•  ë©”ì†Œë“œ ë§Œë“¤ê¸°
 	@RequestMapping("/member/insertform")
-	// ¸Ş¼Òµå¸íÀº ÀÇ¹Ì ¾øÀ½ ³×ÀÓ ÀÚÀ¯(Áö¸¸ ¶È°°ÀÌ ÀÛ¼º)
 	public String insertform() {
-		// ÀÀ´äÇÒ jsp ÆäÀÌÁöÀÇ À§Ä¡¸¦ ¸®ÅÏÇØÁÖ¸é µÈ´Ù.
+		//ì‘ë‹µí•  jsp í˜ì´ì§€ì˜ ìœ„ì¹˜ë¥¼ ë¦¬í„´í•´ì£¼ë©´ ëœë‹¤.
 		return "member/insertform";
 	}
+	/*
+	 *  [ ìš”ì²­ íŒŒë¼ë¯¸í„° ì¶”ì¶œí•˜ëŠ” ë°©ë²• 1 ]
+	 *  HttpServletRequest ê°ì²´ë¥¼ Controller ë©”ì†Œë“œë¡œ ì „ë‹¬ ë°›ì•„ì„œ ì§ì ‘ ì¶”ì¶œí•œë‹¤.
+	 */
 	@RequestMapping("/member/insert")
 	public String insert(HttpServletRequest request) throws UnsupportedEncodingException {
-		// Æû Àü¼ÛµÇ´Â ÆÄ¶ó¹ÌÅÍ ÃßÃâÇÏ±â
+		//í¼ ì „ì†¡ë˜ëŠ” íŒŒë¼ë¯¸í„° ì¶”ì¶œí•˜ê¸°
 		int num=Integer.parseInt(request.getParameter("num"));
 		String name=request.getParameter("name");
 		String addr=request.getParameter("addr");
-		
+
 		System.out.println(num+"|"+name+"|"+addr);
-		
+
 		return "member/insert";
 	}
-	
-	 	/*
-	    *  [ ¿äÃ» ÆÄ¶ó¹ÌÅÍ ÃßÃâÇÏ´Â ¹æ¹ı 3 ]
-	    *  
-	    *  ÆÄ¶ó¹ÌÅÍ¸í°ú µ¿ÀÏÇÑ ÇÊµå¸íÀ» °¡Áö°í ÀÖ´Â dto Å¬·¡½º type À»  ¸Ş¼ÒµåÀÇ ¸Å°³º¯¼ö·Î ¼±¾ğÇØ ³õÀ¸¸é
-	    *  ÀÚµ¿À¸·Î ÃßÃâÇØ¼­ dto ¿¡  ÃßÃâÇÑ °ªÀ» setter ¸Ş¼Òµå¸¦ ÀÌ¿ëÇØ¼­ ³ÖÀº ´ÙÀ½  ÇØ´ç dto °´Ã¼ÀÇ 
-	    *  ÂüÁ¶°ªÀÌ Àü´ŞµÈ´Ù.
-	    *  
-	    *  pulic class MemberDto{
-	    *     private int num;  => <input name="num">
-	    *     private String name; => <input name="name">
-	    *     private String addr; => <input name="addr">
-	    *  }
-	    *  
-	    */
-	
-	   @RequestMapping("/member/insert3")
-	   public String insert3(MemberDto dto) {
-	      
-	      System.out.println(dto.getNum()+"|"+dto.getName()+"|"+dto.getAddr());
-	      
-	      return "member/insert";
-	   }
-	   
-	   
-	}   
+	/*
+	 *  [ ìš”ì²­ íŒŒë¼ë¯¸í„° ì¶”ì¶œí•˜ëŠ” ë°©ë²• 2 ]
+	 *
+	 *  íŒŒë¼ë¯¸í„°ëª…ê³¼ ë™ì¼í•˜ê²Œ ë©”ì†Œë“œì˜ ë§¤ê°œë³€ìˆ˜ë¥¼ ì„ ì–¸í•´ ë†“ìœ¼ë©´ ìë™ìœ¼ë¡œ ì¶”ì¶œí•´ì„œ ë„£ì–´ì¤€ë‹¤.
+	 *
+	 *  <input name="num">  ì´ë©´  int num or String num
+	 *  <input name="email"> ì´ë©´  String email  ì´ëŸ° ì‹ìœ¼ë¡œ ì„ ì–¸ í•˜ë©´ ëœë‹¤.
+	 */
+	@RequestMapping("/member/insert2")
+	public String insert2(int num, String name, String addr) {
 
+		System.out.println(num+"|"+name+"|"+addr);
 
+		return "member/insert";
+	}
+	/*
+	 *  [ ìš”ì²­ íŒŒë¼ë¯¸í„° ì¶”ì¶œí•˜ëŠ” ë°©ë²• 3 ]
+	 *
+	 *  íŒŒë¼ë¯¸í„°ëª…ê³¼ ë™ì¼í•œ í•„ë“œëª…ì„ ê°€ì§€ê³  ìˆëŠ” dto í´ë˜ìŠ¤ type ì„  ë©”ì†Œë“œì˜ ë§¤ê°œë³€ìˆ˜ë¡œ ì„ ì–¸í•´ ë†“ìœ¼ë©´
+	 *  ìë™ìœ¼ë¡œ ì¶”ì¶œí•´ì„œ dto ì—  ì¶”ì¶œí•œ ê°’ì„ setter ë©”ì†Œë“œë¥¼ ì´ìš©í•´ì„œ ë„£ì€ ë‹¤ìŒ  í•´ë‹¹ dto ê°ì²´ì˜
+	 *  ì°¸ì¡°ê°’ì´ ì „ë‹¬ëœë‹¤.
+	 *
+	 *  pulic class MemberDto{
+	 *     private int num;  => <input name="num">
+	 *     private String name; => <input name="name">
+	 *     private String addr; => <input name="addr">
+	 *  }
+	 *
+	 */
+	@RequestMapping("/member/insert3")
+	public String insert3(MemberDto dto) {
 
+		System.out.println(dto.getNum()+"|"+dto.getName()+"|"+dto.getAddr());
 
-
-
-
-
-
-
-
-
+		return "member/insert";
+	}
+}

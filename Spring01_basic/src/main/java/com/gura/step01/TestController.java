@@ -5,111 +5,96 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.gura.step01.member.MemberDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /*
- *  JSON ¹®ÀÚ¿­ ÀÀ´äÇÏ´Â ¹æ¹ı
- *  
- *  1. pom.xml ¿¡ jackson-databind dependency ¸¦ Ãß°¡ÇÑ´Ù.
- *  2. ÄÁÆ®·Ñ·¯ ¸Ş¼Òµå¿¡ @ResponseBody ¾î³ëÅ×ÀÌ¼ÇÀ» ºÙÇôÁØ´Ù.
- *  3. Dto, List, Map µîÀ» ÄÁÆ®·Ñ·¯¿¡¼­ ¸®ÅÏÇØÁÖ¸é ÇØ´ç °´Ã¼¿¡ ´ã±ä Á¤º¸°¡ json À¸·Î ±¸¼ºµÇ¾î¼­ ÀÀ´äµÈ´Ù.
- *  
+ *  JSON ë¬¸ìì—´ ì‘ë‹µí•˜ëŠ” ë°©ë²•
+ *
+ *  1. pom.xml ì—  jackson-databind dependency ë¥¼ ì¶”ê°€í•œë‹¤.
+ *  2. ì»¨íŠ¸ë¡¤ëŸ¬ ë©”ì†Œë“œì— @ResponseBody ì–´ë…¸í…Œì´ì…˜ì„ ë¶™ì—¬ì¤€ë‹¤.
+ *  3. Dto, List , Map ë“±ì„ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ë¦¬í„´í•´ì£¼ë©´ í•´ë‹¹ ê°ì²´ì— ë‹´ê¸´ ì •ë³´ê°€ json ìœ¼ë¡œ êµ¬ì„±ë˜ì–´ì„œ ì‘ë‹µëœë‹¤.
  */
 
 @Controller
 public class TestController {
+
 	@ResponseBody
 	@RequestMapping("/test/json1")
 	public String json1() {
+
 		return "{\"num\":1, \"name\":\"kim\", \"addr\":\"seoul\"}";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/test/json2")
 	public MemberDto json2() {
-		// DB¿¡¼­ ÀĞ¾î¿Â È¸¿øÁ¤º¸¶ó°í °¡Á¤ÇÏÀÚ
+		//DB ì—ì„œ ì½ì–´ì˜¨ íšŒì› ì •ë³´ë¼ê³  ê°€ì •í•˜ì
 		MemberDto dto=new MemberDto();
 		dto.setNum(2);
-		dto.setName("ÇØ°ñ");
-		dto.setAddr("¿ø¼şÀÌ");
-		
+		dto.setName("í•´ê³¨");
+		dto.setAddr("ì›ìˆ­ì´");
+
 		return dto;
 	}
-	
 	@ResponseBody
 	@RequestMapping("/test/json3")
-	public Map<String, Object> json3() {
+	public Map<String, Object> json3(){
 		Map<String, Object> map=new HashMap<>();
 		map.put("num", 3);
-		map.put("name", "¿ø¼şÀÌ");
-		map.put("addr", "µ¿¹°¿ø");
+		map.put("name", "ì›ìˆ­ì´");
+		map.put("addr", "ë™ë¬¼ì›");
 		return map;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/test/json4")
 	public List<String> json4(){
 		List<String> names=new ArrayList<>();
-		names.add("±è±¸¶ó");
-		names.add("ÇØ°ñ");
-		names.add("¿ø¼şÀÌ");
-		
+		names.add("ê¹€êµ¬ë¼");
+		names.add("í•´ê³¨");
+		names.add("ì›ìˆ­ì´");
+
 		return names;
 	}
 
 	@ResponseBody
 	@RequestMapping("/test/json5")
-	public List<MemberDto> jaon5(){
+	public List<MemberDto> json5(){
 		List<MemberDto> list=new ArrayList<>();
-		list.add(new MemberDto(1, "±è±¸¶ó", "³ë·®Áø"));
-		list.add(new MemberDto(2, "ÇØ°ñ", "Çà½Åµ¿"));
-		list.add(new MemberDto(3, "¿ø¼şÀÌ", "µ¿¹°¿ø"));
-		
+		list.add(new MemberDto(1, "ê¹€êµ¬ë¼", "ë…¸ëŸ‰ì§„"));
+		list.add(new MemberDto(2, "í•´ê³¨", "í–‰ì‹ ë™"));
+		list.add(new MemberDto(3, "ì›ìˆ­ì´", "ë™ë¬¼ì›"));
+
 		return list;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/test/json6")
 	public List<Map<String, Object>> json6(){
-		List<Map<String, Object>> list = new ArrayList<>();
+		List<Map<String, Object>> list=new ArrayList<>();
+
 		Map<String, Object> map1=new HashMap<>();
 		map1.put("num", 1);
-		map1.put("name", "±è±¸¶ó");
-		map1.put("addr", "³ë·®Áø");
-		
+		map1.put("name", "ê¹€êµ¬ë¼");
+		map1.put("addr", "ë…¸ëŸ‰ì§„");
+
 		Map<String, Object> map2=new HashMap<>();
 		map2.put("num", 2);
-		map2.put("name", "ÇØ°ñ");
-		map2.put("addr", "Çà½Åµ¿");
-		
+		map2.put("name", "í•´ê³¨");
+		map2.put("addr", "í–‰ì‹ ë™");
+
 		Map<String, Object> map3=new HashMap<>();
 		map3.put("num", 3);
-		map3.put("name", "¿ø¼şÀÌ");
-		map3.put("addr", "µ¿¹°¿ø");
-		
+		map3.put("name", "ì›ìˆ­ì´");
+		map3.put("addr", "ë™ë¬¼ì›");
+
 		list.add(map1);
 		list.add(map2);
 		list.add(map3);
-		
+
 		return list;
 	}
-	
-	
-	/*
-	 *  Dto or Map => { }
-	 *  List => [ ]
-	 *  List<String> => ["xxx",:"xxx":....]
-	 *  List<Dto> or List<Map> => [{}, {}, ...]
-	 *  
-	 */
-	
 }
-
-
-
-
-
-
-

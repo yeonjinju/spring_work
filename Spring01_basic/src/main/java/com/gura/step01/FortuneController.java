@@ -8,47 +8,44 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class FortuneController {
-	
+
 	@RequestMapping("/fortune")
 	public String fortune(HttpServletRequest request) {
-		// ¿À´ÃÀÇ ¿î¼¼
-		String fortuneToday="µ¿ÂÊÀ¸·Î °¡¸é ±ÍÀÎÀ» ¸¸³ª¿ä";
-		// request scope ¿¡ ÀÀ´ä¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ ´ã´Â´Ù.
-		request.setAttribute("fortuneToday", fortuneToday );
-		
-		// /WEB-INF/views/fortune.jsp ÆäÀÌÁö·Î forward ÀÌµ¿ÇØ¼­ ÀÀ´äÇÏ±â
+		//ì˜¤ëŠ˜ì˜ ìš´ì„¸ (ëª¨ë¸)
+		String fortuneToday="ë™ìª½ìœ¼ë¡œ ê°€ë©´ ê·€ì¸ì„ ë§Œë‚˜ìš”";
+		//request scope ì— ì‘ë‹µì— í•„ìš”í•œ ë°ì´í„°ë¥¼ ë‹´ëŠ”ë‹¤.
+		request.setAttribute("fortuneToday", fortuneToday);
+		// /WEB-INF/views/fortune.jsp í˜ì´ì§€ë¡œ forward ì´ë™í•´ì„œ ì‘ë‹µí•˜ê¸°
 		return "fortune";
 	}
-	
+
 	@RequestMapping("/fortune2")
 	public ModelAndView fortune2() {
-		// ¿À´ÃÀÇ ¿î¼¼
-		String fortuneToday="¼­ÂÊÀ¸·Î °¡¸é ±ÍÀÎÀ» ¸¸³ª¿ä";
-		
-		// HttpServletRequest °´Ã¼ ´ë½Å¿¡ ModelAndView °´Ã¼¸¦ »ı¼ºÇØ¼­
+		//ì˜¤ëŠ˜ì˜ ìš´ì„¸ (ëª¨ë¸)
+		String fortuneToday="ë™ìª½ìœ¼ë¡œ ê°€ë©´ ê·€ì¸ì„ ë§Œë‚˜ìš”";
+
+		//HttpServletRequest ê°ì²´ ëŒ€ì‹ ì— ModelAndView ê°ì²´ë¥¼ ìƒì„±í•´ì„œ
 		ModelAndView mView=new ModelAndView();
-		// view page ¿¡ Àü´ŞÇÒ ³»¿ëÀ» ´ã´Â´Ù.
+		// view page ì— ì „ë‹¬í•  ë‚´ìš©ì„ ë‹´ëŠ”ë‹¤.
 		mView.addObject("fortuneToday", fortuneToday);
-		// view page ÀÇ À§Ä¡µµ ´ã´Â´Ù.
+		// view page ì˜ ìœ„ì¹˜ë„ ë‹´ëŠ”ë‹¤.
 		mView.setViewName("fortune");
-		// ¸ğµ¨°ú view page Á¤º¸°¡ ¸ğµÎ ´ã°ÜÀÖ´Â ModelAndView °´Ã¼¸¦ ¸®ÅÏÇØÁÖ¸é ¶È°°ÀÌ µ¿ÀÛÇÑ´Ù.
+		// ëª¨ë¸ê³¼ view page ì •ë³´ê°€ ëª¨ë‘ ë‹´ê²¨ ìˆëŠ” ModelAndView ê°ì²´ë¥¼ ë¦¬í„´í•´ì£¼ë©´ ë˜‘ê°™ì´ ë™ì‘í•œë‹¤.
 		return mView;
-		
 	}
-	
-	// ModelAndView ¸¦ ¸Å°³º¯¼ö·Î ¼±¾ğÇÏ¸é ½ºÇÁ¸µ ÇÁ·¹ÀÓ¿öÅ©°¡ ÀÏ¾Æ¼­ °´Ã¼»ı¼º ÈÄ ÂüÁ¶°ªÀ» ³Ö¾îÁØ´Ù. 
+
+	// ModelAndView ë¥¼ ë§¤ê°œ ë³€ìˆ˜ë¡œ ì„ ì–¸í•˜ë©´ ìŠ¤í”„ë§ í”„ë ˆì„ì›Œí¬ê°€ ì•Œì•„ì„œ ê°ì²´ìƒì„±í›„ ì°¸ì¡°ê°’ì„ ë„£ì–´ì¤€ë‹¤.
 	@RequestMapping("/fortune3")
 	public ModelAndView fortune3(ModelAndView mView) {
-		// ¿À´ÃÀÇ ¿î¼¼
-		String fortuneToday="³²ÂÊÀ¸·Î °¡¸é ±ÍÀÎÀ» ¸¸³ª¿ä";
-		
-		// view page ¿¡ Àü´ŞÇÒ ³»¿ëÀ» ´ã´Â´Ù.
+		//ì˜¤ëŠ˜ì˜ ìš´ì„¸ (ëª¨ë¸)
+		String fortuneToday="ë™ìª½ìœ¼ë¡œ ê°€ë©´ ê·€ì¸ì„ ë§Œë‚˜ìš”";
+
+		// view page ì— ì „ë‹¬í•  ë‚´ìš©ì„ ë‹´ëŠ”ë‹¤.
 		mView.addObject("fortuneToday", fortuneToday);
-		// view page ÀÇ À§Ä¡µµ ´ã´Â´Ù.
+		// view page ì˜ ìœ„ì¹˜ë„ ë‹´ëŠ”ë‹¤.
 		mView.setViewName("fortune");
-		// ¸ğµ¨°ú view page Á¤º¸°¡ ¸ğµÎ ´ã°ÜÀÖ´Â ModelAndView °´Ã¼¸¦ ¸®ÅÏÇØÁÖ¸é ¶È°°ÀÌ µ¿ÀÛÇÑ´Ù.
+		// ëª¨ë¸ê³¼ view page ì •ë³´ê°€ ëª¨ë‘ ë‹´ê²¨ ìˆëŠ” ModelAndView ê°ì²´ë¥¼ ë¦¬í„´í•´ì£¼ë©´ ë˜‘ê°™ì´ ë™ì‘í•œë‹¤.
 		return mView;
-		
 	}
-	
+
 }
